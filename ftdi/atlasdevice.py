@@ -10,8 +10,9 @@ import time
 
 class AtlasDevice(Device):
 
-    def __init__(self, sn):
-        super().__init__(mode='t', device_id=sn)
+    def __init__(self, device_id: str) -> None:
+        super().__init__(mode='t', device_id=device_id)
+        self.device_id = device_id
 
 
     def read_line(self, size=0):
@@ -30,21 +31,18 @@ class AtlasDevice(Device):
         os.linesep = '\r'
         return self.readlines()
 
-    def send_cmd(self, cmd):
+    def send_cmd(self, cmd: str) -> int:
         """
         Send command to the Atlas Sensor.
         Before sending, add Carriage Return at the end of the command.
-        :param cmd:
-        :return:
+        Returns the number of bytes written.
         """
-        buf = cmd + "\r"        # add carriage return
+        buf = cmd + '\r'        # add carriage return
         try:
-            self.write(buf)
-            return True
+            return self.write(data=buf)
         except FtdiError:
             print("Failed to send command to the sensor.")
-            return False
-            
+            return 0
             
             
 def get_ftdi_device_list():
@@ -55,9 +53,6 @@ def get_ftdi_device_list():
     dev_list = []
     
     for device in Driver().list_devices():
-        # list_devices returns bytes rather than strings
-        #dev_info = map(lambda x: x.decode('latin1'), device)
-        # device must always be this triple
         vendor, product, serial = device
         dev_list.append(serial)
     return dev_list
