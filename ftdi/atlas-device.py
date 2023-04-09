@@ -63,7 +63,7 @@ def get_ftdi_device_list():
     return dev_list
 
 
-if __name__ == '__main__':
+def main():
 
     real_raw_input = vars(__builtins__).get('raw_input', input) # used to find the correct function for python2/3
 
@@ -143,3 +143,6 @@ if __name__ == '__main__':
                 lines = dev.read_lines()
                 for i in range(len(lines)):
                     print( lines[i])
+
+if __name__ == '__main__':
+    pass
