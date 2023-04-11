@@ -1,5 +1,9 @@
-from atlasdevice import AtlasDevice
+from atlasscientific.ftdi.atlasdevice import AtlasDevice
 from time import sleep
+from enum import Enum
+
+class PH_Commands(Enum):
+    READ: str = 'r'
 
 class PHProbe(AtlasDevice):
 
@@ -7,14 +11,15 @@ class PHProbe(AtlasDevice):
         super().__init__(device_id=device_id)
 
     def wait(self) -> None:
-        sleep(1.3)
+        sleep(1)
 
     def read_ph(self) -> float:
         '''Sends a command to read the pH and waits for the response.
         Returns a floating point number of the detected pH.
         '''
+        self.flush()
         # Send the 'r' command for a single read.
-        self.send_cmd('r')
+        self.send_cmd(PH_Commands.READ.value)
         # Wait the appropriate amount of time.
         self.wait()
         # Read the line.

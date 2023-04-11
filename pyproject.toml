@@ -1,5 +1,5 @@
 [project]
-name = "atlas-scientific"
+name = "atlasscientific"
 version = "0.0.1"
 authors = [
     {name = "Atlas Scientific"},
