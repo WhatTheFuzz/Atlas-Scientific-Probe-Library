@@ -1,3 +1,4 @@
+[![CodeQL](https://github.com/WhatTheFuzz/Atlas-Scientific-Probe-Library/actions/workflows/codeql.yml/badge.svg)](https://github.com/WhatTheFuzz/Atlas-Scientific-Probe-Library/actions/workflows/codeql.yml)
 
 # Preparing the Raspberry Pi #
 ### Install the latest Raspberry Pi OS
