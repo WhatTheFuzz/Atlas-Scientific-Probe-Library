@@ -18,14 +18,10 @@ class PHProbe(AtlasDevice):
         '''Sends a command to read the pH and waits for the response.
         Returns a floating point number of the detected pH.
         '''
-        self.flush()
         # Send the 'r' command for a single read.
         self.send_cmd(PH_Commands.READ.value)
-        # Wait the appropriate amount of time.
-        self.wait()
         # Read the line.
         line: str = self.read_line()
-        self.flush()
         try:
             return float(line)
         except ValueError as e:
@@ -39,7 +35,6 @@ class PHProbe(AtlasDevice):
     def get_baud(self) -> int:
         self.flush()
         self.send_cmd('baud,?')
-        self.wait()
         line = self.read_line()
         try:
             baud = re.search(r'\d+', line).group(0)

@@ -7,13 +7,16 @@ from pylibftdi import Driver
 import os
 import time
 
-
 class AtlasDevice(Device):
 
     def __init__(self, device_id: str) -> None:
         super().__init__(mode='t', device_id=device_id)
         self.device_id = device_id
+        self.wait_time = 1.0 # Response time of the device, in seconds.
 
+
+    def wait(self) -> None:
+        sleep(self.wait_time)
 
     def read_line(self, size=0):
         """
@@ -37,9 +40,13 @@ class AtlasDevice(Device):
         Before sending, add Carriage Return at the end of the command.
         Returns the number of bytes written.
         """
+        # Flush the buffer before sending.
+        self.flush()
         buf = cmd + '\r'        # add carriage return
         try:
-            return self.write(data=buf)
+            num_bytes_written = self.write(data=buf)
+            self.wait()
+            return num_bytes_written
         except FtdiError:
             print("Failed to send command to the sensor.")
             return 0
