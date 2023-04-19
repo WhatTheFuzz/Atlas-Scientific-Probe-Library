@@ -24,3 +24,8 @@ jobs:
         score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint.txt)
         echo "Pylint score was $score"
         anybadge --label=pylint --value=$score --file=pylint.svg 2=red 4=orange 8=yellow 10=green
+    - name: Uploading badge
+      uses: actions/upload-artifact@v3
+      with:
+        name: pylint-badge
+        path: pylint.svg
