@@ -52,7 +52,7 @@ class AtlasDevice(Device):
             self.wait()
             return num_bytes_written
         except FtdiError:
-            print("Failed to send command to the sensor.")
+            print('Failed to send command to the sensor.')
             return 0
 
 def get_ftdi_device_list():

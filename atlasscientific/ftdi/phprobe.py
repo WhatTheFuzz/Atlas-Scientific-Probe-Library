@@ -21,7 +21,8 @@ class PHProbe(AtlasDevice):
         try:
             return float(line)
         except ValueError as err:
-            raise ValueError(f'[-] Failed to read pH, got string {line}; expected float.') from err
+            raise ValueError(f'[-] Failed to read pH, got string {line}; ' \
+                             f'expected float.') from err
 
 
     def set_baud(self, rate: int=9600) -> bool:
@@ -37,8 +38,9 @@ class PHProbe(AtlasDevice):
             baud = re.search(r'\d+', line).group(0)
             return baud
         except IndexError as err:
-            raise ValueError("Unable to get baud, expected int, got {line}") from err
+            raise ValueError(f'Unable to get baud, expected int, ' \
+                             f'got {line}') from err
 
 if __name__ == '__main__':
-    ph: PHProbe = PHProbe(device_id="DK0G4FXK")
+    ph: PHProbe = PHProbe(device_id='DK0G4FXK')
     print(ph.get_baud())
