@@ -1,4 +1,4 @@
-[![CodeQL](https://github.com/WhatTheFuzz/Atlas-Scientific-Probe-Library/actions/workflows/codeql.yml/badge.svg)](https://github.com/WhatTheFuzz/Atlas-Scientific-Probe-Library/actions/workflows/codeql.yml)
+[![CodeQL](https://github.com/WhatTheFuzz/Atlas-Scientific-Probe-Library/actions/workflows/codeql.yml/badge.svg)](https://github.com/WhatTheFuzz/Atlas-Scientific-Probe-Library/actions/workflows/codeql.yml) [![Pylint](https://github.com/WhatTheFuzz/atlas-scientific-probe-ftdi-library/actions/workflows/pylint.yml/badge.svg)](https://github.com/WhatTheFuzz/atlas-scientific-probe-ftdi-library/actions/workflows/pylint.yml)
 
 # Preparing the Raspberry Pi #
 ### Install the latest Raspberry Pi OS
