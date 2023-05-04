@@ -62,8 +62,20 @@ class PHProbe(AtlasDevice):
             raise ValueError(f'Unable to get baud, expected int, ' \
                              f'got {line}') from err
 
+    def is_extended_ph_scale(self) -> bool:
+        self.flush()
+        self.send_cmd('pHext,?')
+        line = self.read_line()
+        try:
+            enabled = int(re.split(r'\?PHEXT,', line)[1])
+            if (enabled == 1): return True
+            else: return False
+        except (IndexError, TypeError) as err:
+            raise ValueError(f'Unable to get extended pH scale, expected int, ' \
+                             f'got {line}') from err
+
 if __name__ == '__main__':
     ph: PHProbe = PHProbe(device_id='DK0G4FXK')
     print(ph.get_baud())
 
-    print(ph.set_baud(rate=9600))
+    print(ph.get_extended_ph_scale())

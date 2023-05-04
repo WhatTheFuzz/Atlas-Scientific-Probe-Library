@@ -18,5 +18,10 @@ class TestPhProbe(unittest.TestCase):
             with self.assertRaises(ValueError):
                 probe.set_baud(rate=1)
 
+    def test_get_extended_ph_scale(self):
+        with PHProbe(device_id) as probe:
+            is_extended = probe.is_extended_ph_scale()
+            self.assertTrue(isinstance(is_extended, bool))
+
 if __name__ == '__main__':
     unittest.main()
